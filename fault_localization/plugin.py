@@ -53,7 +53,7 @@ def pytest_terminal_summary(terminalreporter):
         return
     abs_localization_dir = os.path.abspath(LOCALIZATION_DIR)
 
-    terminalreporter.section("Fault Localization Results")
+    terminalreporter.section("(Test if this is updating) Fault Localization Results")
     line_scores = {
         (path, line): score
         for (path, line), score in calc_scores().items()
