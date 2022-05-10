@@ -80,7 +80,8 @@ def generate_output(line_scores, line_context=LINE_CONTEXT, n_lines=1):
         yield header
         for line in sorted(lines, key=attrgetter('num')):
             # todo: right-justify the numeric score value (rather than tab)
-            yield '{line.num}\t\x1b[48;5;{ansi_tag}m{line.content}\033[0m\t{line.score}'.format(
+            yield '{line.num}\t{line.content}\t{line.score}'.format(line=line)
+            '''yield '{line.num}\t\x1b[48;5;{ansi_tag}m{line.content}\033[0m\t{line.score}'.format(
                 line=line,
                 ansi_tag=rgb_to_hex(
                     int(
@@ -89,4 +90,4 @@ def generate_output(line_scores, line_context=LINE_CONTEXT, n_lines=1):
                 )
                 # TODO - want to actually represent this in HSV space and go from neutral green/orange to red - see also http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html#background-colors
                 # TODO - can we use RGB for background color rather than hex?
-            )
+            )'''
