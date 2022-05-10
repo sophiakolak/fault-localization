@@ -2,6 +2,7 @@
 
 import os
 import collections
+import json
 from operator import attrgetter
 
 LINE_CONTEXT = 5
@@ -80,7 +81,10 @@ def generate_output(line_scores, line_context=LINE_CONTEXT, n_lines=1):
         yield header
         for line in sorted(lines, key=attrgetter('num')):
             # todo: right-justify the numeric score value (rather than tab)
-            yield '{line.num}\t{line.content}\t{line.score}'.format(line=line)
+            data = {"line": line.num, "score": line.score, "content": line.content}
+            as_json = json.dumps(data)
+            yield as_json
+            #yield '{line.num}\t{line.content}\t{line.score}'.format(line=line)
             '''yield '{line.num}\t\x1b[48;5;{ansi_tag}m{line.content}\033[0m\t{line.score}'.format(
                 line=line,
                 ansi_tag=rgb_to_hex(
